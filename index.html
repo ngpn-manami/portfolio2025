@@ -22,14 +22,16 @@
 		/* Hero Section */
 		.hero {
 			height: 100vh;
-			background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
 			display: flex;
+			background-image: linear-gradient(135deg, rgba(255, 215, 0, 0.6), rgba(255, 165, 0, 0.6)), url('/Images/IMG_0689.jpg');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
 			align-items: center;
 			justify-content: center;
 			text-align: center;
 			color: #333;
 			position: relative;
-			overflow: hidden;
 		}
 
 		.hero::before {
@@ -66,7 +68,7 @@
 			font-size: 3.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+			text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* 白い影に変更 */
 			animation: slideInUp 1s ease-out;
 			color: #333;
 			line-height: 1.3;
@@ -77,6 +79,7 @@
 			margin-bottom: 2rem;
 			opacity: 0.8;
 			animation: slideInUp 1s ease-out 0.3s both;
+			text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* 白い影を追加 */
 			color: #444;
 		}
 
@@ -174,7 +177,21 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			gap: 60px;
-			align-items: center;
+			align-items: start; /* カラムの上端揃えに変更 */
+		}
+
+		.about-profile-area { /* 画像とテキストをまとめるコンテナ */
+			display: flex;
+			flex-direction: column;
+			align-items: center; /* 画像を中央揃えにする場合 */
+		}
+
+		.about-image {
+			width: 100%;
+			max-width: 280px; /* 画像の最大幅 */
+			border-radius: 15px;
+			margin-bottom: 30px; /* 画像とテキストの間隔 */
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 		}
 
 		.about-text {
@@ -453,7 +470,11 @@
 
 		/* Contact Section */
 		.contact {
-			background: #f8f9fa;
+			/* background: #f8f9fa; */ /* Replaced with background image and overlay */
+			background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('/Images/202412.png');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
 			text-align: center;
 		}
 
@@ -512,6 +533,11 @@
 				font-size: 1.2rem;
 			}
 
+			.about-text { /* スマホ表示時のテキスト左右余白 */
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+
 			.about-content,
 			.crowdfunding-content {
 				grid-template-columns: 1fr;
@@ -528,8 +554,29 @@
 
 			.nav {
 				position: static;
-				margin: 20px;
-				text-align: center;
+				/* margin: 20px; */ /* 上下マージンは維持し、左右autoで中央寄せ */
+				/* text-align: center; */ /* flexで制御するため不要に */
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* リンクアイテムを中央揃え */
+				width: fit-content; /* 中身に合わせて幅を調整 */
+				max-width: 90%; /* 画面幅いっぱいにならないように最大幅を設定 */
+				margin: 20px auto; /* 上下20px、左右autoで中央配置 */
+				padding: 15px; /* 内側の余白 */
+				background: rgba(255, 255, 255, 0.95); /* PC版に近い背景 */
+				backdrop-filter: blur(8px); /* PC版に近いぼかし */
+				border-radius: 15px; /* 角丸を調整 */
+				box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2); /* PC版に近い影 */
+				display: none; /* スマホ表示では非表示にする */
+			}
+
+			.nav a {
+				margin: 8px 0; /* 各リンクの上下マージン */
+				padding: 12px 25px; /* リンクのパディングを増やしてタップしやすく */
+				border-radius: 10px; /* リンクの角丸 */
+				background-color: rgba(255, 215, 0, 0.1); /* 薄いアクセント背景色 */
+				width: 100%; /* 親要素の幅いっぱいに */
+				text-align: center; /* テキストを中央揃え */
 			}
 
 			.works-grid,
@@ -592,11 +639,13 @@
 	<section id="about" class="section about">
 		<h2 class="section-title fade-in">About</h2>
 		<div class="about-content">
-			<div class="about-text fade-in">
-				<p>映像編集・ディレクション・デザインを中心に活動するクリエイターです。</p>
-				<p>登録者24万人のYouTubeチャンネル編集や、大規模個展での展示映像制作、クラウドファンディング運営などを担当。商業系の映像編集、MV制作、イラスト、Live2D、イベント管理、営業事務など、幅広い実務経験も活かして活動中。
-				</p>
-				<p><strong>「クリエイティブ × 実務力」</strong>のバランスで、丁寧かつ確実な成果をご提供します。</p>
+			<div class="about-profile-area">
+				<img src="Images/80d25bed18f0ca9e.png" alt="私について" class="about-image fade-in">
+				<div class="about-text fade-in">
+					<p>映像編集・ディレクション・デザインを中心に活動するクリエイターです。</p>
+					<p><strong>「クリエイティブ × 実務力」</strong>のバランスを大切に、丁寧で安心感のある仕事を心がけています。</p>
+					<p>1993年生まれ、福岡在住。生活に音楽が欠かせません!</p>
+				</div>
 			</div>
 			<div class="skills-grid fade-in">
 				<div class="skill-category">
